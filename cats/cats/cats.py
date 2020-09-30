@@ -141,7 +141,18 @@ def shifty_shifts(start, goal, limit):
     their lengths.
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    if len(start) > len(goal):
+        limit = 0
+    if len(start) == 0 and len(goal) == 0:
+        return 0
+    if len(goal)>len(start):
+        return len(goal)-len(start) + shifty_shifts(start,goal[0:len(start)], limit)
+    else:
+        if start[:1] == goal[:1]:
+            return shifty_shifts(start[1:len(start)], goal[1:len(start)], limit)
+        else:
+            return 1 + shifty_shifts(start[1:len(start)],goal[1:len(start)],limit)
+
     # END PROBLEM 6
 
 
@@ -181,7 +192,15 @@ def final_diff(start, goal, limit):
 def report_progress(typed, prompt, user_id, send):
     """Send a report of your id and progress so far to the multiplayer server."""
     # BEGIN PROBLEM 8
+    #calculate progress
+    #create our dictionary for the report
     "*** YOUR CODE HERE ***"
+    report = {
+        'id': user_id,
+        'progress': progress,
+    }
+    #send our report with the 'send' function
+    return progress
     # END PROBLEM 8
 
 
