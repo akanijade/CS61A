@@ -141,33 +141,35 @@ def shifty_shifts(start, goal, limit):
     their lengths.
     """
     # BEGIN PROBLEM 6
-    if len(start) > len(goal):
-        limit = 0
-    if len(start) == 0 and len(goal) == 0:
+    #if limit < 0:
+        #return 0 + shifty_shifts(start[1:len(start)],goal[1:len(start)],limit -1)
+    if start == goal:
         return 0
-    if len(goal)>len(start):
-        return len(goal)-len(start) + shifty_shifts(start,goal[0:len(start)], limit)
+    if limit < 0:
+        return 10000000
+    if not goal or not start:
+        return max(len(start), len(goal))    
+    if start[0] == goal[0]:
+        return shifty_shifts(start[1:len(start)], goal[1:len(goal)],limit)
     else:
-        if start[:1] == goal[:1]:
-            return shifty_shifts(start[1:len(start)], goal[1:len(start)], limit)
-        else:
-            return 1 + shifty_shifts(start[1:len(start)],goal[1:len(start)],limit)
-
-    # END PROBLEM 6
+        return 1 + shifty_shifts(start[1:len(start)],goal[1:len(goal)],limit - 1)
+    
+        # END PROBLEM 6
 
 
 def pawssible_patches(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
-    assert False, 'Remove this line'
 
-    if ______________: # Fill in the condition
+    if start == goal: # Fill in the condition
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return 0
         # END
 
-    elif ___________: # Feel free to remove or add additional cases
+    elif start[0] != goal[0]: # Feel free to remove or add additional cases
         # BEGIN
         "*** YOUR CODE HERE ***"
+        
         # END
 
     else:
