@@ -243,6 +243,20 @@ def time_per_word(times_per_player, words):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    
+    
+    #time = [[ for i in range(times_per_player[i])] for j in times_per_player[i][j]]
+    for i in range(len(times_per_player)):
+        time = []
+        for j in range(1, len(times_per_player[i])):
+            time.append([abs(times_per_player[i][j] - times_per_player[i][j-1])])
+    
+    for x in words:
+        word_list = []    
+        for y in range(len(words[x])):
+            word_list += [words[x]]    
+
+    return word_list
     # END PROBLEM 9
 
 
