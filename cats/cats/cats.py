@@ -166,18 +166,23 @@ def pawssible_patches(start, goal, limit):
         return 0
         # END
 
-    elif start[0] != goal[0]: # Feel free to remove or add additional cases
+    if limit < 0: # Feel free to remove or add additional cases
         # BEGIN
         "*** YOUR CODE HERE ***"
-        
+        return 10000000
         # END
-
+    if not goal or not start:
+        return max(len(start), len(goal))
+    #if start[0] == goal[0]:
+        #return pawssible_patches(start[:1], goal[1:], limit)
     else:
-        add_diff = ... # Fill in these lines
-        remove_diff = ...
-        substitute_diff = ...
+        add_diff = 1 + pawssible_patches(start, goal[1:], limit - 1)# Fill in these lines
+        remove_diff = 1 + pawssible_patches(start[1:], goal, limit - 1)
+        substitute_diff = pawssible_patches(start[1:len(start)], goal[1:len(goal)],limit) if start[0] == goal[0] else 1 + pawssible_patches(start[1:len(start)],goal[1:len(goal)],limit - 1)
         # BEGIN
         "*** YOUR CODE HERE ***"
+    #if start[0] != goal[0]:
+    return min(add_diff, remove_diff, substitute_diff)
         # END
 
 
