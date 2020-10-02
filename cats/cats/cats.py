@@ -244,19 +244,25 @@ def time_per_word(times_per_player, words):
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
     
-    
+    players = []
     #time = [[ for i in range(times_per_player[i])] for j in times_per_player[i][j]]
-    for i in range(len(times_per_player)):
+    #print('DEBUG: ', times_per_player)
+    for i in times_per_player:
         time = []
-        for j in range(1, len(times_per_player[i])):
-            time.append([abs(times_per_player[i][j] - times_per_player[i][j-1])])
-    
-    for x in words:
-        word_list = []    
-        for y in range(len(words[x])):
-            word_list += [words[x]]    
+        for j in range(1, len(i)):
+            time.append(i[j]- i[j - 1])
+        players.append(time)
+        
+    #print('DEBUG: ', time)
+    #print('DEBUG: ', players)
+    #print('DEBUG: ', words)
+    #times_per_player += time
+    #for x in words:
+        #word_list = []    
+        #for y in range(len(words[x])):
+            #word_list.append(words)    
 
-    return word_list
+    return game(words, players)
     # END PROBLEM 9
 
 
@@ -272,6 +278,38 @@ def fastest_words(game):
     word_indices = range(len(all_words(game)))    # contains an *index* for each word
     # BEGIN PROBLEM 10
     "*** YOUR CODE HERE ***"
+    fastest = []
+    fastest_player = 0
+    for i in player_indices:
+        fastest.append([])
+    for word in word_indices:
+        fast = 100000000
+        for player in player_indices:
+            if fast > time(game, player, word):     
+                fast = time(game, player, word)
+                fastest_player = player
+        fastest[fastest_player].append(word_at(game, word))
+               
+                #players.append(word_at(game, word))
+                #print('DEBUG: ', players)
+            #elif time(game, player, word) == time(game, player - 1, word) and word_at(game, word) not in players:
+                #players.append(word_at(game, word))
+                #print('players: ', players)
+                #print('DEBUG: ', players)
+                #for check in players:
+                #    print('DEBUG: ', check)
+                #    if check not in players:
+                #        players.append(word_at(game, word))  
+                #    else:
+                #        continue"""
+            #fastest.append(players)
+        #fastest.append(players)
+
+                     
+        
+     
+    #print('DEBUG: ', fastest)    
+    return fastest
     # END PROBLEM 10
 
 
